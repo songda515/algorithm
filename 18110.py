@@ -8,13 +8,10 @@ def new_round(num):
     else:
         return int(num)
 
-n = int(input()) # stdin.readline()
+n = int(input())
 if n == 0:
     print(0)
 else:
-    # levels = []
-    # for i in range(n):
-    #     levels.append(int(input())
     levels = [int(input()) for i in range(n)]
     levels.sort()
     x = new_round(n * 0.15)
