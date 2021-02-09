@@ -2,22 +2,12 @@ from sys import stdin
 input = stdin.readline
 
 n, m = map(int, input().split())
-set_prices = [0] * m
-one_prices = [0] * m
+set_price = one_price = 1000
 for i in range(m):
-    set_prices[i], one_prices[i] = map(int, input().split())
+    s, o = map(int, input().split())
+    set_price = min(s, set_price)
+    one_price = min(o, one_price)
 
-money = 0
-while(n >= 6):
-    n = n - 6
-    if min(set_prices) > min(one_prices) * 6:
-        money += min(one_prices) * 6
-    else:
-        money += min(set_prices)
-
-if min(set_prices) > min(one_prices) * n:
-    money += min(one_prices) * n
-else:
-    money += min(set_prices)
-
+money = (n // 6) * min(set_price, one_price * 6)
+money += min(set_price, one_price * (n % 6))
 print(money)
