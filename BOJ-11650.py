@@ -2,14 +2,12 @@ from sys import stdin
 input = stdin.readline
 
 n = int(input())
-point_dict = {}
+points = []
 
 for _ in range(n):
-    x, y = map(int, input().split())
-    if not x in point_dict.keys():
-        point_dict[x] = []
-    point_dict[x].append(y)
+    points.append(list(map(int, input().split())))
 
-for x in sorted(point_dict.keys()):
-    for y in sorted(point_dict[x]):
-        print(x, y)
+points = sorted(points, key = lambda point: (point[0], point[1]))
+
+for p in points:
+    print(p[0], p[1])
