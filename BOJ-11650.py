@@ -7,7 +7,6 @@ points = []
 for _ in range(n):
     points.append(list(map(int, input().split())))
 
-points = sorted(points, key = lambda point: (point[0], point[1]))
-
+points.sort()
 for p in points:
     print(p[0], p[1])
