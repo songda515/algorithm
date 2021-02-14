@@ -2,9 +2,9 @@ from sys import stdin
 input = stdin.readline
 
 n = int(input())
-words = {}
+words = set()
 for _ in range(n):
-    words[input().strip()] = 0
+    words.add(input().strip())
 
-words = sorted(words.keys(), key=lambda x: (len(x), x))
+words = sorted(words, key=lambda x: (len(x), x))
 print('\n'.join(map(str, words)))
