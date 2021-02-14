@@ -2,23 +2,17 @@ from sys import stdin
 input = stdin.readline
 
 n = int(input())
-strings = []
 for _ in range(n):
-    strings.append(input()) 
-
-for string in strings:
-    is_valid = True
-    stack = []
+    string = input()
+    stack = 0
     for s in string:
         if s == '(':
-            stack.append(s)
+            stack += 1
         elif s == ')':
-            if stack:
-                stack.pop()
-            else:
-                is_valid = False
+            stack -= 1
+            if stack < 0:
                 break
-    if not stack and is_valid:
+    if stack == 0:
         print("YES")
     else:
         print("NO")
