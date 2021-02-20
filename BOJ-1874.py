@@ -1,57 +1,25 @@
 from sys import stdin
-from bisect import bisect_left, bisect_right
+
 input = stdin.readline
-
-def is_in(array, target):
-    left = bisect_left(array, target)
-    right = bisect_right(array, target)
-    if left == right:
-        return False
-    return True
-
 n = int(input())
-series = []
-for _ in range(n):
-    series.append(int(input()))
+series = [int(input()) for _ in range(n)]
 
 stack = []
-series_stack =[]
-num = range(1, n+1)
-i = -1
-result = []
+result = ""
+num = 1
 for s in series:
-    while i < n:
-        # 이미 스택에 있는 경우
-        #if s in stack:
-        if is_in(stack, s):
-            item = stack.pop()
-            if item == s:
-                #print(s, num[i], "-", item)
-                result.append("-")
-                series_stack.append(item)
-                break
-            else:
-                result = ["NO"]
-                i = n
-                break
-        i += 1
-        if s > num[i]:
-            #print(s, num[i], "+")
-            result.append("+")
-            stack.append(num[i])
-        if s == num[i]:
-            #print(s, num[i], "+")
-            result.append("+")
-            stack.append(num[i])
-            #print(s, num[i], "-")
-            result.append("-")
-            series_stack.append(stack.pop())
-            break
-        if s < num[i]:
-            #print(s, num[i], "-")
-            result.append("-")
-            series_stack.append(stack.pop())
+    # 수열의 값과 같아질때까지 증가하며 스택에 push
+    while num <= s:
+        stack.append(num)
+        result += '+\n'
+        num += 1
+        
+    # 스택의 마지막 값과 같은 경우
+    if stack.pop() == s:
+        result += '-\n'
+    # 스택의 마지막 값과 다르면 수열만들기 불가능함
+    else:
+        result = "NO\n"
+        break
 
-    #print(stack, series_stack)
-
-print("\n".join(result))
+print(result, end="")
