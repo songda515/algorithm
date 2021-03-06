@@ -34,5 +34,5 @@ def solution(progresses, speeds):
         print("\n", progresses, speeds, distribute, count)
     return count
 
-#print(solution([93, 30, 55], [1, 30, 5])) # return [2, 1]
+print(solution([93, 30, 55], [1, 30, 5])) # return [2, 1]
 print(solution([95, 90, 99, 99, 80, 99], [1, 1, 1, 1, 1, 1])) # return [1, 3, 2]
