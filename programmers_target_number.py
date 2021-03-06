@@ -7,24 +7,27 @@ target : 타겟 넘버
 return : 숫자를 적절히 더하고 빼서 타겟 넘버를 만드는 방법의 수
 """
 
-from itertools import product
+answer = 0
+def dfs(idx, numbers, target, value):
+    global answer # 전역변수 사용한다는 선언
+
+    length = len(numbers)
+    # 전부 다 계산했을 때 target 과 같은 경우, 정답
+    if(idx == length and target == value):
+        answer += 1
+        return
+    # 전부 다 계산했을 때 target 과 다른 경우,
+    if(idx == length):
+        return 
+
+    # 현재 값을 더하거나 빼서 value 로 설정, 다음 index 계산을 위해 dfs 반복
+    dfs(idx+1, numbers, target, value+numbers[idx])
+    dfs(idx+1, numbers, target, value-numbers[idx])
+
 
 def solution(numbers, target):
-    length = len(numbers)
-    # 전체 가능한 case 
-    cases = []
-    for _ in range(length):
-        cases.append([-1, 1])
-    cases = list(product(*cases))
-    #print(len(cases))
-
-    count = 0
-    for case in cases:
-        s = 0
-        for i in range(length):
-            s += case[i] * numbers[i]
-        if s == target:
-            count += 1
-    return count
+    global answer # 전역변수 사용한다는 선언
+    dfs(0, numbers, target, 0)
+    return answer
 
 print(solution([1, 1, 1, 1, 1], 3))
