@@ -7,11 +7,11 @@ input = stdin.readline
 n = int(input())
 numbers = list(map(int, input().split()))
 
-max_sum = -1000
-dp = [0] * 100001
-for i in range(n):
-    dp[i] = max(dp[i-1] + numbers[i], numbers[i])
-    max_sum = max(max_sum, dp[i])
+total = numbers[0]
+max_total = total
+for i in range(1, n):
+    total = max(total + numbers[i], numbers[i])
+    max_total = max(max_total, total)
     
-print(max_sum)
+print(max_total)
 
