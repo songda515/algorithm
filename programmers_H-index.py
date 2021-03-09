@@ -14,20 +14,12 @@ def solution(citations):
     for h in range(max(citations)):
         if h > 1000:
             break
-        # more : h 번 이상 인용된 논문의 개수
-        # rest : h 번 이하 인용된 논문의 리스트
         more = 0
-        rest = [0]
         for x in citations:
             if x >= h:
                 more += 1
-            else:
-                rest.append(x)
-
-        # more 중 h 번 이상 인용된 논문이 h개 이상인지?
-        # 나머지 논문이 h번 이하 인용되었는지?        
-        if more >= h and max(rest) <= h:
+        if more >= h:
             h_list.append(h)
-    return max(h_list)    
+    return max(h_list)
 
 print(solution([3, 0, 6, 1, 5])) # return 3
