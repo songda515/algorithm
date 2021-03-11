@@ -5,21 +5,20 @@ clothes : 스파이가 가진 의상들이 담긴 2차원 배열
 return : 서로 다른 옷의 조합의 수
 """
 
-from itertools import product
-
 def solution(clothes):
     # Key: 종류, Value: 이름 으로 Dictionary 만들기 
     clothes_dict = {}
     for c in clothes:
         key = c[1]
         if not key in clothes_dict:
-            clothes_dict[key] = [0]
+            clothes_dict[key] = []
         clothes_dict[key].append(c[0])
     
-    #print(list(product(*clothes_dict.values())))
-    combination = len(list(product(*clothes_dict.values()))) - 1
-    return combination
-
+    # 곱집합 개수 구하기
+    cases = 1
+    for v in clothes_dict.values():
+        cases *= len(v) + 1
+    return cases - 1
 
 # return 5
 result = solution([["yellowhat", "headgear"], ["bluesunglasses", "eyewear"], ["green_turban", "headgear"]])
